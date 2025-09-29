@@ -182,7 +182,7 @@ const FallingPillsSection = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-[#F0F2F4]">
+    <div className="min-h-[90vh] flex items-center justify-center p-4 bg-[#F0F2F4]">
       <div
         ref={containerRef}
         className="relative w-full max-w-10xl h-[600px] rounded-3xl shadow-2xl overflow-hidden border border-gray-300"

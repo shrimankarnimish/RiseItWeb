@@ -17,6 +17,7 @@
   gap: 2rem;
   padding: 2rem;
   align-items: start;
+  padding-top: 100px;
 }
 
 /* Left Sticky Section */
@@ -47,7 +48,7 @@
 .sticky-description {
   font-size: 25px;
   line-height: 1.9;
-  color: #0D0D0D;
+  color: #002B5B;
   font-weight: 100;
   max-width: 100%;
   text-align: left;

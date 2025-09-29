@@ -2,7 +2,11 @@
 import React, { useState } from "react";
 
 const Footer = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
@@ -35,21 +39,44 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#262628] text-white py-12 px-6 md:px-16">
-      <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
+      <div className="flex flex-col md:flex-row justify-between items-start gap-12">
         {/* Left Side */}
-        <div>
-          <h2 className="text-4xl md:text-5xl font-bold">
-            Shall we work <span className="italic font-normal">together?</span>
-          </h2>
-          <div className="mt-6">
-            <p className="text-sm">© 2025 Good Looking Design</p>
-            <p className="text-xs opacity-70">All rights reserved</p>
+        <div className="flex-1 flex flex-col justify-start">
+          {/* Links Section (aligned with form top) */}
+          {/* Links Section (aligned with form top) */}
+          <nav className="flex gap-8 mb-17">
+            <a href="#about" className="hover:underline">
+              About
+            </a>
+            <a href="#work" className="hover:underline">
+              Work
+            </a>
+            <a href="#services" className="hover:underline">
+              Services
+            </a>
+            <a href="#blog" className="hover:underline">
+              Blog
+            </a>
+          </nav>
+
+          {/* Text Section (unchanged position) */}
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Ready when you are.
+            </h2>
+            <div className="mt-6">
+              <p className="uhp">
+                We don’t chase impressions.
+                <br />
+                We build growth systems that scale and brands that last.
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Contact Form */}
         <div className="bg-gray-100 text-black rounded-3xl shadow-md w-full max-w-md p-6 md:p-8">
-          <h3 className="text-lg font-medium mb-4">Get in touch with us</h3>
+          <h3 className="text-lg font-medium mb-4">Let's Talk Growth</h3>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
