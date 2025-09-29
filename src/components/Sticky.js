@@ -9,8 +9,7 @@ const ServicesSection = () => {
       title: "Leads & Conversions",
       subtitle:
         "SEO, PPC, CRO, Email Marketing, Affiliate Marketing, Video Marketing Build pipelines that convert, not just traffic that bounces.",
-
-      features: [""],
+      features: [],
       video:
         "https://video-previews.elements.envatousercontent.com/190e86fc-1801-471e-8936-ab5219c2575a/watermarked_preview/watermarked_preview.mp4",
     },
@@ -19,7 +18,7 @@ const ServicesSection = () => {
       title: "Visibility & Engagement",
       subtitle:
         "Social Media, PR, Content Marketing, Corporate Videos Make your brand impossible to ignore - and impossible not to trust",
-      features: [""],
+      features: [],
       video: "https://assets.mixkit.co/videos/41576/41576-720.mp4",
     },
     {
@@ -27,7 +26,7 @@ const ServicesSection = () => {
       title: "Revenue & Retention",
       subtitle:
         "Remarketing, Marketing Automation, CRM Integration Turn first-time buyers into loyal customers with systems that scale.",
-      features: [""],
+      features: [],
       video: "https://assets.mixkit.co/videos/26108/26108-720.mp4",
     },
     {
@@ -51,7 +50,6 @@ const ServicesSection = () => {
       title: "Brand Collateral",
       subtitle:
         "Catalogues, Brochures, Booklets, Banners, Standees Offline credibility that supports your online growth.",
-
       features: ["Strategy", "Project management", "Optimised"],
       video:
         "https://video-previews.elements.envatousercontent.com/190e86fc-1801-471e-8936-ab5219c2575a/watermarked_preview/watermarked_preview.mp4",
@@ -91,11 +89,16 @@ const ServicesSection = () => {
               <div className="card-content">
                 <h3 className="card-title">{service.title}</h3>
                 <h4 className="card-subtitle">{service.subtitle}</h4>
-                <ul className="card-features">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx}>{feature}</li>
-                  ))}
-                </ul>
+
+                {service.features.length > 0 && (
+                  <ul className="card-features">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx}>
+                        <span className="feature-badge">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
                 <div className="card-footer">
                   {/* Read More Button */}
