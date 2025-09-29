@@ -107,11 +107,13 @@ Our approach blends data, strategy, and creativity - so every move drives ROI, s
           </div>
 
           {/* Button with video icon */}
+          {/* Button with video icon */}
+          {/* Button with video icon */}
           <div
             className={`flex justify-center transition-all duration-700 ${
               highlightedWords >= totalWords
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4"
+                ? "opacity-100 translate-y-0 mt-32" // push further down
+                : "opacity-0 translate-y-16" // start offscreen
             }`}
           >
             <button className="bg-[#0D0D0D] text-white px-8 py-4 rounded-full text-lg font-medium transition-colors duration-300 shadow-lg flex items-center gap-3 hover:text-[#2E8BFF]">
