@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="red" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="red" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="red" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Main Wave -->
+  <path d="M0 150 
+           C 200 100, 400 200, 600 150
+           C 800 100, 1000 200, 1200 150"
+        stroke="url(#grad)" stroke-width="3" fill="none"/>
+  
+  <!-- Overlay Wave for Soft Effect -->
+  <path d="M0 150 
+           C 200 50, 400 250, 600 150
+           C 800 50, 1000 250, 1200 150"
+        stroke="url(#grad)" stroke-width="2" fill="none" opacity="0.5"/>
+  
+  <!-- Another Layer -->
+  <path d="M0 150 
+           C 200 120, 400 180, 600 150
+           C 800 120, 1000 180, 1200 150"
+        stroke="url(#grad)" stroke-width="1.5" fill="none" opacity="0.6"/>
+</svg>
