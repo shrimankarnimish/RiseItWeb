@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Section from "../about/section";
+
 import { FadeLeft, FadeRight } from "@/components/Animations";
 
 const AboutSection = () => {
