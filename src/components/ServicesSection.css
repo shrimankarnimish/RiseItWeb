@@ -38,15 +38,15 @@
 }
 
 .sticky-title {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 600;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0 0;
   /* remove the 25% */
   color: #0D0D0D;
 }
 
 .sticky-description {
-  font-size: 25px;
+  font-size: 1.75rem;
   line-height: 1.9;
   color: #002B5B;
   font-weight: 100;
@@ -100,14 +100,14 @@
 }
 
 .card-title {
-  font-size: 2.75rem;
+  font-size: 1.75rem;
   font-weight: 500;
   margin: 0;
   color: #0D0D0D;
 }
 
 .card-subtitle {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 300;
   color: #002B5B;
   margin-bottom: 0.5rem;
@@ -128,7 +128,7 @@
 
 /* Footer with Read More + Arrow */
 .card-footer {
-  margin-top: auto;
+  margin-top: 17px;
   display: flex;
   justify-content: space-between;
   /* button left, arrow right */
@@ -189,7 +189,7 @@
   color: #0D0D0D; /* black text */
   padding: 0.35rem 0.8rem; /* small flat capsule */
   border-radius: 999px; /* pill shape */
-  font-size: 1.1rem;
+  font-size: 1em;
   font-weight: 500;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* subtle depth */
   margin: 0.25rem 0.25rem 0.25rem 0; /* spacing between capsules */

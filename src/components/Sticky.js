@@ -131,3 +131,8 @@ const ServicesSection = () => {
 };
 
 export default ServicesSection;
+
+// https://www.laksonline.in/
+// https://colorlib.com/wp/about-me-pages/
+
+// https://www.awwwards.com/sites/laksonline The Way We Think Section
