@@ -89,7 +89,7 @@ const AboutSection = () => {
         </div>
       </div>
 
-
+{/* NIMISH */}
 
       {/* Second Section - Strategic Vision & Execution */}
       <div className="min-h-screen bg-[#BCC5CF] flex">
