@@ -39,9 +39,12 @@ export default function Navbar() {
 
         {/* Desktop Nav Links */}
         <div className="hidden md:flex bg-[#0D0D0D]/90 backdrop-blur-md text-[#F9FAFB] px-8 py-5 rounded-full shadow-lg gap-8 text-[18px] font-medium">
-          <a href="/about" className="hover:text-[#2E8BFF] transition-colors">
+          <Link
+            href="/about"
+            className="hover:text-[#2E8BFF] transition-colors"
+          >
             About
-          </a>
+          </Link>
           <a href="#" className="hover:text-[#2E8BFF] transition-colors">
             Services
           </a>
