@@ -1,10 +1,11 @@
 import React from "react";
 import Animation from "@/components/Animation";
 import Work from "@/components/Work";
-import Sticky from "@/components/Sticky";
+import Sticky from "@/components/Services_Sticky";
 import About from "@/components/About";
 import Slider from "@/components/Slider";
 import Whyus from "@/components/Whyus";
+import ServicesSection from "@/components/Services_Sticky";
 
 
 const Home = () => {
@@ -14,7 +15,7 @@ const Home = () => {
         <Animation />
       </section>
       <About />
-      <Sticky />
+      <ServicesSection />
       <Slider />
       <Work />
       <Whyus/>
