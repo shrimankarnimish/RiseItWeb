@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import React, { useRef, useState } from "react";
+import { ExternalLink, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const LatestWork = () => {
-  const sectionRef = useRef(null);
   const cardsRef = useRef(null);
-  const [maxTranslateX, setMaxTranslateX] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const projects = [
     {
@@ -110,65 +109,56 @@ const LatestWork = () => {
     },
   ];
 
-  useEffect(() => {
-    if (!sectionRef.current || !cardsRef.current) return;
+  // Reduced card width to fit more cards
+  const cardWidth = 288 + 24; // w-72 + gap-6
 
-    const section = sectionRef.current;
-    const cards = cardsRef.current;
-    const containerWidth = section.offsetWidth;
-    const cardsWidth = cards.scrollWidth;
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+  };
 
-    // find one card width (including margin gap)
-    const firstCard = cards.querySelector("div");
-    const cardStyle = firstCard ? window.getComputedStyle(firstCard) : null;
-    const cardWidth = firstCard ? firstCard.offsetWidth : 0;
-    const cardGap = cardStyle ? parseInt(cardStyle.marginRight) : 0;
-
-    // ensure last card fully visible
-    setMaxTranslateX(cardsWidth - containerWidth + cardGap);
-
-    const handleScroll = () => {
-      const sectionRect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      if (sectionRect.top < windowHeight && sectionRect.bottom > 0) {
-        const scrollY = window.scrollY - section.offsetTop;
-        const maxScroll = section.offsetHeight - windowHeight;
-
-        const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
-
-        const translateX = progress * maxTranslateX;
-        cards.style.transform = `translateX(-${translateX}px)`;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [maxTranslateX]);
+  const handlePrev = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? projects.length - 1 : prev - 1
+    );
+  };
 
   return (
     <div
-      ref={sectionRef}
       className="relative"
       style={{
-        height: "400vh",
+        height: "70vh",
         backgroundColor: "#F0F2F4",
       }}
     >
-      <section className="sticky top-0 min-h-screen flex flex-col justify-center">
-        <div className="max-w-full px-8">
+      <section className="container-wrapper">
+        <div className="max-w-full">
           {/* Section Header */}
-          <div className="mb-12">
+          <div className="mb-12 flex justify-between items-center">
             <h1 className="uh1 mb-6">Latest Work</h1>
+            <div className="flex gap-4">
+              <button
+                onClick={handlePrev}
+                className="p-2 rounded-full bg-white shadow hover:bg-gray-200"
+              >
+                <ChevronLeft />
+              </button>
+              <button
+                onClick={handleNext}
+                className="p-2 rounded-full bg-white shadow hover:bg-gray-200"
+              >
+                <ChevronRight />
+              </button>
+            </div>
           </div>
 
           {/* Cards Container */}
           <div className="overflow-hidden">
             <div
               ref={cardsRef}
-              className="flex gap-8 will-change-transform"
-              style={{ width: "max-content", transform: "translateX(0px)" }}
+              className="flex gap-6 transition-transform duration-500"
+              style={{
+                transform: `translateX(-${currentIndex * cardWidth}px)`,
+              }}
             >
               {projects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
@@ -184,7 +174,7 @@ const LatestWork = () => {
 const ProjectCard = ({ project }) => {
   return (
     <div
-      className={`relative flex-shrink-0 w-96 h-[500px] md:w-[450px] md:h-[600px] rounded-3xl overflow-hidden 
+      className={`relative flex-shrink-0 w-72 h-[400px] md:w-80 md:h-[500px] rounded-2xl overflow-hidden 
         ${project.background} ${project.textColor} group cursor-pointer
         transform transition-all duration-300 hover:scale-105 hover:shadow-2xl`}
     >
@@ -254,4 +244,3 @@ const ProjectCard = ({ project }) => {
 };
 
 export default LatestWork;
-  

@@ -2,7 +2,7 @@
 
 /* globals.css */
 
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 h1,
 h2,
@@ -11,7 +11,7 @@ h4,
 h5,
 h6,
 p {
-  font-family: "Merriweather", serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Optional: give them a nice consistent size + weight */
@@ -79,13 +79,18 @@ p {
 }
 
 body {
-  font-family: "Merriweather", serif;
+  font-family: "Montserrat", sans-serif;
+
 }
 
 .container {
+
   padding-left: 20px;
   padding-right: 20px;
 }
+
+
+
 
 @keyframes pulseDot {
 
@@ -194,14 +199,16 @@ body {
   line-height: 1.6;
   font-weight: 300;
 }
+
 .titleabout {
   font-size: 3rem;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.3;
   margin: 0 0 1rem 0;
   color: #0D0D0D;
 }
-.titledesc{
+
+.titledesc {
   font-size: 21px;
   line-height: 1.3;
   color: #002B5B;
@@ -211,5 +218,52 @@ body {
 }
 
 .mb-16 {
-  margin-bottom: 4rem; 
+  margin-bottom: 4rem;
 }
+
+.p1 {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #002B5B;
+}
+
+/* Global Container Class - Add this to your global CSS file (globals.css or app.css) */
+
+.container-wrapper {
+  width: 100%;
+  max-width: 88%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .container-wrapper {
+    max-width: 92%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container-wrapper {
+    max-width: 95%;
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-wrapper {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+.uhp {
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: #002B5B;
+}
+
+
+/* Start Home Page CSS  */
+
+/* End Home Page CSS  */

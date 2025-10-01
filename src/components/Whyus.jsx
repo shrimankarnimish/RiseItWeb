@@ -6,33 +6,30 @@ import person2 from "../../public/Assets/Images/dm2.jpg";
 
 const AboutSection = () => {
   return (
-    <section style={{ backgroundColor: "#F0F2F4" }} className="pt-16  relative">
-      {/* Container aligned with Latest Work */}
-      <div className="max-w-full px-8 mx-auto">
-        <div className="grid lg:grid-cols-2 gap-10 items-start">
+    <section style={{ backgroundColor: "#F0F2F4" }}>
+      <div className="container-wrapper relative">
+        <div className="grid lg:grid-cols-2 gap-9 items-start">
           {/* Left Text Section */}
           <div>
-            <div>
-              <h1 className="uh1">Why Us</h1>
-            </div>
-            <p className="uh2 max-w-xl text-lg leading-relaxed">
+            <h1 className="uh1 text-4xl font-bold mb-6">Why Us</h1>
+            <p className="uh2 max-w-xl text-lg leading-relaxed mb-10">
               Because growth isn't a gimmick. It's a system.
               <br />
               And we engineer it - with analytics, strategy, and relentless
               optimisation.
             </p>
-            <button className="bg-[#0D0D0D] text-white px-8 py-3 rounded-full text-lg font-medium transition-colors duration-300 shadow-lg hover:text-[#2E8BFF] mt-10">
+            <button className="bg-[#0D0D0D] text-white px-8 py-3 rounded-full text-lg font-medium transition-colors duration-300 shadow-lg hover:text-[#2E8BFF]">
               Let&apos;s work together
             </button>
           </div>
 
           {/* Right Team Cards */}
           <div className="relative flex flex-col items-center lg:items-end gap-6 lg:gap-0 min-h-[600px] lg:min-h-[650px]">
-            {/* Back Card - Left positioned */}
+            {/* Back Card - Absolute inside container-wrapper */}
             <div
-              className="w-80 md:w-96 lg:w-[450px] xl:w-[500px] 
-             bg-white rounded-3xl shadow-xl p-6 z-0 
-             lg:absolute lg:top-24 lg:left-0 xl:left-6"
+              className="w-80 md:w-96 lg:w-[450px] xl:w-[500px]
+                bg-white rounded-3xl shadow-xl p-6 z-0
+                absolute lg:top-24 lg:left-0 xl:left-6"
             >
               <Image
                 src={person2}
@@ -41,7 +38,7 @@ const AboutSection = () => {
               />
             </div>
 
-            {/* Front Card - Right positioned */}
+            {/* Front Card */}
             <div className="w-80 md:w-96 lg:w-[450px] xl:w-[500px] bg-white rounded-3xl shadow-xl p-6 z-10 lg:mr-0">
               <Image
                 src={person1}
