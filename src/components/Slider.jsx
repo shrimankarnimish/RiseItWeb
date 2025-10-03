@@ -1,10 +1,16 @@
 "use client";
-import React, { useRef, useState } from "react";
-import { ExternalLink, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useRef, useState, useEffect } from "react";
+import {
+  ExternalLink,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 const LatestWork = () => {
   const cardsRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const projects = [
     {
@@ -109,64 +115,97 @@ const LatestWork = () => {
     },
   ];
 
-  // Reduced card width to fit more cards
+  // Create infinite loop by duplicating projects
+  const extendedProjects = [...projects, ...projects, ...projects];
   const cardWidth = 288 + 24; // w-72 + gap-6
 
+  // Start at the middle set to allow scrolling both directions
+  useEffect(() => {
+    setCurrentIndex(projects.length);
+  }, []);
+
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % projects.length);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + 1);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) =>
-      prev === 0 ? projects.length - 1 : prev - 1
-    );
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev - 1);
   };
+
+  // Handle infinite loop reset
+  useEffect(() => {
+    if (!isTransitioning) return;
+
+    const timer = setTimeout(() => {
+      setIsTransitioning(false);
+
+      // Reset to middle section without animation
+      if (currentIndex >= projects.length * 2) {
+        setCurrentIndex(projects.length);
+      } else if (currentIndex <= 0) {
+        setCurrentIndex(projects.length);
+      }
+    }, 500); // Match transition duration
+
+    return () => clearTimeout(timer);
+  }, [currentIndex, isTransitioning, projects.length]);
 
   return (
     <div
-      className="relative"
+      className="relative py-16 px-4"
       style={{
-        height: "70vh",
+        minHeight: "70vh",
         backgroundColor: "#F0F2F4",
       }}
     >
-      <section className="container-wrapper">
-        <div className="max-w-full">
-          {/* Section Header */}
-          <div className="mb-12 flex justify-between items-center">
-            <h1 className="uh1 mb-6">Latest Work</h1>
-            <div className="flex gap-4">
-              <button
-                onClick={handlePrev}
-                className="p-2 rounded-full bg-white shadow hover:bg-gray-200"
-              >
-                <ChevronLeft />
-              </button>
-              <button
-                onClick={handleNext}
-                className="p-2 rounded-full bg-white shadow hover:bg-gray-200"
-              >
-                <ChevronRight />
-              </button>
-            </div>
-          </div>
+      <div className="max-w-7xl mx-auto container-wrapper">
+        {/* Section Header */}
+        <div className="mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+            Latest Work
+          </h1>
+        </div>
 
-          {/* Cards Container */}
-          <div className="overflow-hidden">
-            <div
-              ref={cardsRef}
-              className="flex gap-6 transition-transform duration-500"
-              style={{
-                transform: `translateX(-${currentIndex * cardWidth}px)`,
-              }}
-            >
-              {projects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
+        {/* Cards Container */}
+        <div className="overflow-hidden">
+          <div
+            ref={cardsRef}
+            className="flex gap-6"
+            style={{
+              transform: `translateX(-${currentIndex * cardWidth}px)`,
+              transition: isTransitioning
+                ? "transform 500ms ease-in-out"
+                : "none",
+            }}
+          >
+            {extendedProjects.map((project, index) => (
+              <ProjectCard key={`${project.id}-${index}`} project={project} />
+            ))}
           </div>
         </div>
-      </section>
+
+        {/* Navigation Buttons - Bottom Left */}
+        <div className="flex gap-6 mt-12">
+          <button
+            onClick={handlePrev}
+            aria-label="Previous project"
+            className="p-3 rounded-full bg-gray-900 text-white shadow-xl hover:bg-gray-800 hover:shadow-2xl transition-all cursor-pointer"
+          >
+            <ChevronLeft className="w-10 h-10" />
+          </button>
+          <button
+            onClick={handleNext}
+            aria-label="Next project"
+            className="p-3 rounded-full bg-gray-900 text-white shadow-xl hover:bg-gray-800 hover:shadow-2xl transition-all cursor-pointer"
+          >
+            <ChevronRight className="w-10 h-10" />
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
@@ -174,7 +213,7 @@ const LatestWork = () => {
 const ProjectCard = ({ project }) => {
   return (
     <div
-      className={`relative flex-shrink-0 w-72 h-[400px] md:w-80 md:h-[500px] rounded-2xl overflow-hidden 
+      className={`relative flex-shrink-0 w-72 h-[400px] md:h-[500px] rounded-2xl overflow-hidden 
         ${project.background} ${project.textColor} group cursor-pointer
         transform transition-all duration-300 hover:scale-105 hover:shadow-2xl`}
     >
@@ -187,7 +226,7 @@ const ProjectCard = ({ project }) => {
       )}
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-opacity-20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
 
       {/* Content */}
       <div className="relative h-full p-6 flex flex-col justify-between">
@@ -195,10 +234,11 @@ const ProjectCard = ({ project }) => {
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold opacity-80">{project.title}</h3>
           {project.hasArrow && (
-            <ArrowRight className="w-5 h-5 opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-3 h-3 opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
           )}
+
           {project.hasExternalLink && (
-            <ExternalLink className="w-5 h-5 opacity-60 group-hover:opacity-100 transition-opacity" />
+            <ExternalLink className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
           )}
         </div>
 

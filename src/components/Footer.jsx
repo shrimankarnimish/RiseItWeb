@@ -38,83 +38,83 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#262628] text-white py-12 px-6 md:px-16">
-      <div className="flex flex-col md:flex-row justify-between items-start gap-12">
-        {/* Left Side */}
-        <div className="flex-1 flex flex-col justify-start">
-          {/* Links Section (aligned with form top) */}
-          {/* Links Section (aligned with form top) */}
-          <nav className="flex gap-8 mb-17">
-            <a href="#about" className="hover:underline">
-              About
-            </a>
-            <a href="#work" className="hover:underline">
-              Work
-            </a>
-            <a href="#services" className="hover:underline">
-              Services
-            </a>
-            <a href="#blog" className="hover:underline">
-              Blog
-            </a>
-          </nav>
+   <footer className="bg-[#262628] text-white py-12">
+  <div className="container-wrapper flex flex-col md:flex-row justify-between items-start gap-12">
+    {/* Left Side */}
+    <div className="flex-1 flex flex-col justify-start">
+      {/* Links Section */}
+      <nav className="flex gap-8 mb-6">
+        <a href="#about" className="hover:underline">
+          About
+        </a>
+        <a href="#work" className="hover:underline">
+          Work
+        </a>
+        <a href="#services" className="hover:underline">
+          Services
+        </a>
+        <a href="#blog" className="hover:underline">
+          Blog
+        </a>
+      </nav>
 
-          {/* Text Section (unchanged position) */}
-          <div>
-            <h2 className="text-4xl md:text-5xl font-bold">
-              Ready when you are.
-            </h2>
-            <div className="mt-6">
-              <p className="uhp">
-                We don’t chase impressions.
-                <br />
-                We build growth systems that scale and brands that last.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Contact Form */}
-        <div className="bg-gray-100 text-black rounded-3xl shadow-md w-full max-w-md p-6 md:p-8">
-          <h3 className="text-lg font-medium mb-4">Let's Talk Growth</h3>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Your Name"
-              className="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
-            />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Your Email"
-              className="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
-            />
-            <textarea
-              rows="4"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Your Message"
-              className="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black resize-none"
-            />
-            <button
-              type="submit"
-              className="bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition w-full"
-            >
-              Send Message
-            </button>
-          </form>
-
-          {status && <p className="mt-4 text-sm">{status}</p>}
+      {/* Text Section */}
+      <div>
+        <h2 className="text-4xl md:text-5xl font-bold">
+          Ready when you are.
+        </h2>
+        <div className="mt-6">
+          <p>
+            We don’t chase impressions.
+            <br />
+            We build growth systems that scale and brands that last.
+          </p>
         </div>
       </div>
-    </footer>
+    </div>
+
+    {/* Contact Form */}
+    <div className="bg-gray-100 text-black rounded-3xl shadow-md w-full max-w-md p-6 md:p-8">
+      <h3 className="text-lg font-medium mb-4">Let's Talk Growth</h3>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Your Name"
+          className="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
+        />
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Your Email"
+          className="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
+        />
+        <textarea
+          rows="4"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Your Message"
+          className="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black resize-none"
+        />
+        <button
+          type="submit"
+          className="bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition w-full"
+        >
+          Send Message
+        </button>
+      </form>
+
+      {status && <p className="mt-4 text-sm">{status}</p>}
+    </div>
+  </div>
+</footer>
+
   );
 };
 
