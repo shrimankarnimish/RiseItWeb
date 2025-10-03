@@ -33,7 +33,7 @@
   top: 20%;
   display: flex;
   align-items: flex-start;
-  padding-right: 2rem;
+  padding-right: 2rem;      
 }
 
 .sticky-inner {
@@ -51,9 +51,9 @@
 }
 
 .sticky-description {
-  font-size: 1.75rem;
-  line-height: 1.9;
-  color: #002B5B;
+  font-size: 21px;
+  line-height: 1.5;
+  color: #0D0D0D;
   font-weight: 100;
   max-width: 100%;
   text-align: left;
@@ -215,7 +215,7 @@
     position: static;
     transform: none;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2rem;  
     padding-right: 0;
   }
 

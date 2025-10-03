@@ -34,7 +34,7 @@ const ServicesSection = () => {
         "SEO, PPC, CRO, Email Marketing, Affiliate Marketing, Video Marketing Build pipelines that convert, not just traffic that bounces.",
       features: [],
       video:
-        "https://video-previews.elements.envatousercontent.com/190e86fc-1801-471e-8936-ab5219c2575a/watermarked_preview/watermarked_preview.mp4",
+        "https://framerusercontent.com/assets/cTB75mH1aRqp7h0EVnYeN6oMTQk.mp4",
     },
     {
       id: 2,
@@ -42,7 +42,8 @@ const ServicesSection = () => {
       subtitle:
         "Social Media, PR, Content Marketing, Corporate Videos Make your brand impossible to ignore - and impossible not to trust",
       features: [],
-      video: "https://assets.mixkit.co/videos/41576/41576-720.mp4",
+      video:
+        "https://framerusercontent.com/assets/5iQNkiLslpAvklqo38iSCtiqc.mp4",
     },
     {
       id: 3,
@@ -50,7 +51,8 @@ const ServicesSection = () => {
       subtitle:
         "Remarketing, Marketing Automation, CRM Integration Turn first-time buyers into loyal customers with systems that scale.",
       features: [],
-      video: "https://assets.mixkit.co/videos/26108/26108-720.mp4",
+      video:
+        "https://framerusercontent.com/assets/UAZjOmzvHxP6KnTC54NAGANEzyo.mp4",
     },
     {
       id: 4,
@@ -58,7 +60,8 @@ const ServicesSection = () => {
       subtitle:
         "Analytics Dashboards, Reporting Systems, Strategy Consulting See exactly what works, cut what doesn't, and invest with clarity.",
       features: ["Logo Design", "Visual Identity", "Guidelines"],
-      video: "https://assets.mixkit.co/videos/26108/26108-720.mp4",
+      video:
+        "https://framerusercontent.com/assets/eZxrkYmH1bhBLDhTRxfMjFpBQSU.mp4",
     },
     {
       id: 5,
@@ -66,7 +69,8 @@ const ServicesSection = () => {
       subtitle:
         "Website Design & Development Your digital foundation: fast, functional, and built to convert.",
       features: ["SEO", "Social Media", "Analytics"],
-      video: "https://assets.mixkit.co/videos/41576/41576-720.mp4",
+      video:
+        "https://framerusercontent.com/assets/vlAePAxJDFqNxGGOeaNC4SGCM.mp4",
     },
     {
       id: 6,
@@ -75,7 +79,7 @@ const ServicesSection = () => {
         "Catalogues, Brochures, Booklets, Banners, Standees Offline credibility that supports your online growth.",
       features: ["Strategy", "Project management", "Optimised"],
       video:
-        "https://video-previews.elements.envatousercontent.com/190e86fc-1801-471e-8936-ab5219c2575a/watermarked_preview/watermarked_preview.mp4",
+        "https://framerusercontent.com/assets/3RFbt87eLuj57r25xlyztygLd8.mp4",
     },
   ];
 
@@ -90,6 +94,7 @@ const ServicesSection = () => {
               <h1 className="sticky-title">Services</h1>
               <p className="sticky-description">
                 Every service. One purpose. Measurable Growth.
+                We offer big agency services at small agency prices. Focused on three core disciplines we use our expertise to help you uncover your business needs, create traction and accelerate growth.
               </p>
             </div>
           </div>
@@ -140,7 +145,12 @@ const ServicesSection = () => {
 
                     {/* Arrow */}
                     <div className="card-arrow">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
                         <path
                           d="M7 17L17 7M17 7H7M17 7V17"
                           stroke="currentColor"

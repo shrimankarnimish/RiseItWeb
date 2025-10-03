@@ -90,13 +90,9 @@ Our approach blends data, strategy, and creativity - so every move drives ROI, s
               return (
                 <span
                   key={index}
-                  className={`inline-block mr-3 transition-all duration-350 ease-out ${
-                    isOn
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-20 translate-y-2"
-                  }`}
+                  className="inline-block mr-3 transition-colors duration-500 ease-out"
                   style={{
-                    color: "#0D0D0D",
+                    color: isOn ? "#2E8BFF" : "#0D0D0D", // default dark, turns blue on scroll
                     transitionDelay: `${delay}ms`,
                   }}
                 >
