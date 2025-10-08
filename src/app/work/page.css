@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* Small Service Card */
+.service-card-small {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 350px;
+  font-family: 'Montserrat', sans-serif;
+  margin-top:15%
+}
+
+.service-card-small:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Video Section */
+.card-video-small {
+  width: 100%;
+  height: 180px;
+  background: #000;
+  overflow: hidden;
+}
+
+.video-element-small {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content Section */
+.card-content-small {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card-title-small {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: #0D0D0D;
+  line-height: 1.3;
+}
+
+.card-subtitle-small {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #002B5B;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.card-features-small {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.card-features-small li {
+  padding: 0;
+}
+
+.feature-badge-small {
+  display: inline-block;
+  background: #f5f5f5;
+  color: #0D0D0D;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-badge-small:hover {
+  transform: translateY(-1px);
+  color: #2E8BFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* Footer with Read More + Arrow */
+.card-footer-small {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Read More Button */
+.read-more-btn-small {
+  background: #0D0D0D;
+  backdrop-filter: blur(10px);
+  padding: 0.625rem 1.25rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.read-more-btn-small:hover {
+  background: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.read-more-text {
+  font-size: 0.875rem;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.read-more-btn-small:hover .read-more-text {
+  color: #2E8BFF;
+}
+
+/* Arrow Button */
+.card-arrow-small {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  color: #666;
+}
+
+.card-arrow-small:hover {
+  background: #f5f5f5;
+  transform: scale(1.1);
+  border-color: #2E8BFF;
+  color: #2E8BFF;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .service-card-small {
+    max-width: 100%;
+  }
+  
+  .card-video-small {
+    height: 160px;
+  }
+  
+  .card-content-small {
+    padding: 1rem;
+  }
+  
+  .card-title-small {
+    font-size: 1.1rem;
+  }
+  
+  .card-subtitle-small {
+    font-size: 0.8rem;
+  }
+}

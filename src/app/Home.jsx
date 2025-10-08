@@ -6,6 +6,7 @@ import About from "@/components/About";
 import Slider from "@/components/Slider";
 import Whyus from "@/components/Whyus";
 import ServicesSection from "@/components/Services_Sticky";
+import Bit from "@/components/Bit";
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
         <Animation />
       </section>
       <About />
+      <Bit/>
       <ServicesSection />
       <Slider />
       <Work />

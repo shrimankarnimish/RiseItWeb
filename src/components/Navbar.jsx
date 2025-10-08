@@ -29,6 +29,33 @@ export default function Navbar() {
         show ? "translate-y-0" : "-translate-y-full"
       }`}
     >
+      {/* ✅ Progressive Blur Background when scrolling up */}
+      {show && (
+        <div className="absolute inset-0 rotate-180 pointer-events-none z-[-1]">
+          <div className="w-full h-full relative">
+            {[0.5, 1, 2, 4, 8, 13, 22, 36, 60, 100].map((blur, index) => {
+              const step = 20; // Increased from 10
+              const start = index * step;
+              const middle1 = start + step;
+              const middle2 = start + step * 1.5;
+              const end = start + step * 2;
+              return (
+                <div
+                  key={blur}
+                  className="absolute inset-0"
+                  style={{
+                    backdropFilter: `blur(${blur}px)`,
+                    WebkitBackdropFilter: `blur(${blur}px)`,
+                    maskImage: `linear-gradient(rgba(0,0,0,0) ${start}%, rgb(0,0,0) ${middle1}%, rgb(0,0,0) ${middle2}%, rgba(0,0,0,0) ${end}%)`,
+                    WebkitMaskImage: `linear-gradient(rgba(0,0,0,0) ${start}%, rgb(0,0,0) ${middle1}%, rgb(0,0,0) ${middle2}%, rgba(0,0,0,0) ${end}%)`,
+                  }}
+                />
+              );
+            })}
+          </div>
+        </div>
+      )}
+      {/* ✅ Navbar content */}
       <div className="container-wrapper">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -50,7 +77,10 @@ export default function Navbar() {
             >
               Services
             </Link>
-            <Link href="#" className="hover:text-[#2E8BFF] transition-colors">
+            <Link
+              href="/work"
+              className="hover:text-[#2E8BFF] transition-colors"
+            >
               Work
             </Link>
             <Link href="#" className="hover:text-[#2E8BFF] transition-colors">
@@ -60,14 +90,14 @@ export default function Navbar() {
 
           {/* Desktop Contact Button */}
           <Link href="/contactus">
-          <div className="hidden md:block">
-            <div className="bg-white/90 backdrop-blur-md px-8 py-5 rounded-full shadow-lg flex items-center gap-2 cursor-pointer">
-              <span className="w-3 h-3 bg-lime-400 rounded-full breathing-dot"></span>
-              <span className="text-[18px] text-gray-600 font-medium">
-                Get in touch
-              </span>
+            <div className="hidden md:block">
+              <div className="bg-white/90 backdrop-blur-md px-8 py-5 rounded-full shadow-lg flex items-center gap-2 cursor-pointer">
+                <span className="w-3 h-3 bg-lime-400 rounded-full breathing-dot"></span>
+                <span className="text-[18px] text-gray-600 font-medium">
+                  Get in touch
+                </span>
+              </div>
             </div>
-          </div>
           </Link>
 
           {/* Mobile Menu Toggle */}
@@ -81,10 +111,9 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* ✅ Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Menu */}
         {menuOpen && (
           <div className="md:hidden mt-4 flex flex-col items-end space-y-3">
-            {/* Black pill-shaped menu */}
             <div className="bg-[#0D0D0D]/95 backdrop-blur-md text-white rounded-3xl shadow-xl flex flex-col items-center py-4 px-8 space-y-4">
               <Link
                 href="/about"
@@ -101,7 +130,7 @@ export default function Navbar() {
                 Services
               </Link>
               <Link
-                href="#"
+                href="/work"
                 onClick={() => setMenuOpen(false)}
                 className="text-lg font-medium"
               >

@@ -96,15 +96,11 @@ const ServicesPage = () => {
         ))}
       </div>
 
-      <div className="card-footer">
-        <div className="card-footer flex justify-center">
-          <div className="mt-20 flex justify-center">
-            <div className="bg-[#0D0D0D] backdrop-blur-md px-6 py-3 rounded-full shadow-lg inline-flex items-center gap-2 cursor-pointer group">
-              <span className="text-[16px] text-white font-medium group-hover:text-[#2E8BFF]">
-                Read More
-              </span>
-            </div>
-          </div>
+      <div className="card-footer flex justify-center mt-20">
+        <div className="bg-[#0D0D0D] backdrop-blur-md px-6 py-3 rounded-full shadow-lg inline-flex items-center gap-2 cursor-pointer group">
+          <span className="text-[16px] text-white font-medium group-hover:text-[#2E8BFF]">
+            Read More
+          </span>
         </div>
       </div>
     </section>
