@@ -14,7 +14,7 @@ const FallingPillsSection = () => {
     { id: 1, text: "Healthcare & Hospitals", color: "bg-pink-500 text-white" },
     { id: 2, text: "SaaS Developers", color: "bg-yellow-400 text-black" },
     { id: 3, text: "Business Consulting", color: "bg-cyan-400 text-black" },
-    { id: 4, text: "Recruiting Agencies ", color: "bg-orange-500 text-white" },
+    { id: 4, text: "Recruiting Agencies", color: "bg-orange-500 text-white" },
     { id: 5, text: "Water Park Equipment", color: "bg-lime-500 text-black" },
     { id: 6, text: "Apparel Retailers", color: "bg-yellow-300 text-black" },
     { id: 7, text: "Oral Healthcare", color: "bg-red-500 text-white" },
@@ -28,12 +28,8 @@ const FallingPillsSection = () => {
     { id: 15, text: "Banking", color: "bg-sky-500 text-white" },
     { id: 16, text: "Mining & Metals", color: "bg-emerald-400 text-black" },
     { id: 17, text: "Natural Stone", color: "bg-amber-500 text-black" },
-    { id: 18, text: "Interiors & Furniture ", color: "bg-blue-600 text-white" },
-    {
-      id: 19,
-      text: "Exhibitions & Trade Shows",
-      color: "bg-slate-400 text-black",
-    },
+    { id: 18, text: "Interiors & Furniture", color: "bg-blue-600 text-white" },
+    { id: 19, text: "Exhibitions & Trade Shows", color: "bg-slate-400 text-black" },
     { id: 20, text: "Logistics", color: "bg-violet-500 text-white" },
   ];
 
@@ -42,9 +38,7 @@ const FallingPillsSection = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-          }
+          if (entry.isIntersecting) setVisible(true);
         });
       },
       { threshold: 0.3 }
@@ -53,24 +47,34 @@ const FallingPillsSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Initialize pills when visible
+  // Initialize pills with word-based priority
   useEffect(() => {
     if (!visible || !containerRef.current) return;
 
     const containerRect = containerRef.current.getBoundingClientRect();
-    const initialPills = pillData.map((pill, index) => ({
+
+    // Sort pills by word count descending
+    const sortedPills = [...pillData].sort(
+      (a, b) => b.text.split(" ").length - a.text.split(" ").length
+    );
+
+    const initialPills = sortedPills.map((pill, index) => ({
       ...pill,
-      x: Math.random() * (containerRect.width - 120),
-      y: -100 - index * 60,
-      vx: (Math.random() - 0.5) * 2,
+      x: Math.random() * (containerRect.width - 140),
+      y: -100 - index * 100, // staggered start
+      vx: 0,
       vy: 0,
       isDragging: false,
       isSettled: false,
       width: pill.text.length * 14 + 40,
-      height: 50,
+      height: 60,
     }));
+
     setPills(initialPills);
   }, [visible]);
+
+  const isOverlappingX = (pill1, pill2) =>
+    pill1.x < pill2.x + pill2.width && pill1.x + pill1.width > pill2.x;
 
   // Physics animation
   useEffect(() => {
@@ -81,41 +85,50 @@ const FallingPillsSection = () => {
       const containerRect = containerRef.current.getBoundingClientRect();
       const gravity = 0.35;
       const friction = 0.98;
-      const bounce = 0.6;
+      const bounce = 0.1;
       const restThreshold = 0.8;
 
       setPills((prev) =>
         prev.map((pill) => {
-          if (pill.isDragging || pill.isSettled) return pill;
+          if (pill.isDragging) return pill;
 
           let newX = pill.x + pill.vx;
           let newY = pill.y + pill.vy;
           let newVx = pill.vx * friction;
-          let newVy = pill.vy + gravity;
+          let newVy = pill.isSettled ? 0 : pill.vy + gravity;
 
-          if (newX <= 0 || newX >= containerRect.width - pill.width) {
-            newVx = -newVx * bounce;
-            newX = newX <= 0 ? 0 : containerRect.width - pill.width;
+          // Keep inside horizontal and vertical bounds
+          newX = Math.max(0, Math.min(newX, containerRect.width - pill.width));
+          newY = Math.max(0, Math.min(newY, containerRect.height - pill.height));
+
+          const overlappingPillsBelow = prev.filter(
+            (other) =>
+              other.id !== pill.id &&
+              !other.isDragging &&
+              isOverlappingX(pill, other) &&
+              other.y >= pill.y
+          );
+
+          let stackY = containerRect.height - pill.height;
+          overlappingPillsBelow.forEach((other) => {
+            const candidateY = other.y - pill.height;
+            if (candidateY < stackY) stackY = candidateY;
+          });
+
+          if (pill.isSettled) {
+            const gap = stackY - pill.y;
+            if (gap > 2) return { ...pill, isSettled: false, vy: gravity };
+            return pill;
           }
 
-          if (newY >= containerRect.height - pill.height) {
-            newVy = -newVy * bounce;
-            newY = containerRect.height - pill.height;
-          }
-
+          if (!pill.isSettled) newVy = pill.vy + gravity;
+          if (newY >= stackY) newVy = -newVy * bounce;
           if (
             Math.abs(newVy) < restThreshold &&
             Math.abs(newVx) < restThreshold &&
-            newY >= containerRect.height - pill.height - 1
+            newY >= stackY - 1
           ) {
-            return {
-              ...pill,
-              x: newX,
-              y: containerRect.height - pill.height,
-              vx: 0,
-              vy: 0,
-              isSettled: true,
-            };
+            return { ...pill, x: newX, y: stackY, vx: 0, vy: 0, isSettled: true };
           }
 
           return { ...pill, x: newX, y: newY, vx: newVx, vy: newVy };
@@ -129,14 +142,17 @@ const FallingPillsSection = () => {
     return () => cancelAnimationFrame(animationRef.current);
   }, [visible]);
 
-  // Drag handlers
+  // Drag handlers with boundary
   const handleMouseDown = (e, pill) => {
+    e.preventDefault();
+    if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const offsetX = e.clientX - rect.left - pill.x;
     const offsetY = e.clientY - rect.top - pill.y;
     setDraggedPill(pill.id);
     setDragOffset({ x: offsetX, y: offsetY });
     setLastMousePos({ x: e.clientX, y: e.clientY, time: Date.now() });
+
     setPills((prev) =>
       prev.map((p) =>
         p.id === pill.id
@@ -149,18 +165,19 @@ const FallingPillsSection = () => {
   const handleMouseMove = (e) => {
     if (!draggedPill || !containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - dragOffset.x;
-    const y = e.clientY - rect.top - dragOffset.y;
+    const pillObj = pills.find((p) => p.id === draggedPill);
+
+    let x = e.clientX - rect.left - dragOffset.x;
+    let y = e.clientY - rect.top - dragOffset.y;
+
+    x = Math.max(0, Math.min(x, rect.width - pillObj.width));
+    y = Math.max(0, Math.min(y, rect.height - pillObj.height));
 
     setPills((prev) =>
       prev.map((p) => (p.id === draggedPill ? { ...p, x, y } : p))
     );
 
-    setLastMousePos((prev) => {
-      const now = Date.now();
-      const dt = now - prev.time || 1;
-      return { x: e.clientX, y: e.clientY, time: now, dt };
-    });
+    setLastMousePos({ x: e.clientX, y: e.clientY, time: Date.now() });
   };
 
   const handleMouseUp = (e) => {
@@ -182,32 +199,34 @@ const FallingPillsSection = () => {
   };
 
   return (
-    <div className="min-h-[90vh] flex items-center justify-center p-4 bg-[#F0F2F4]">
+    <div className="min-h-screen flex items-center justify-start p-4 bg-gray-100">
       <div
         ref={containerRef}
-        className="relative w-full max-w-10xl h-[600px] rounded-3xl shadow-2xl overflow-hidden border border-gray-300"
+        className="relative w-full max-w-10xl mx-auto h-[600px] rounded-3xl shadow-2xl overflow-hidden border border-gray-300"
         style={{ backgroundColor: "#BCC5CF" }}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       >
         {/* Centered Content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-start text-center px-4 pt-12 pb-24">
-          <h1 className="text-[4rem] font-bold text-gray-800 mb-4">
+        <div className="absolute inset-0 flex flex-col items-center justify-start pt-16 text-center px-4 pointer-events-none">
+          <h1 className="text-6xl font-bold text-gray-900 mb-6">
             Industries We Serve
           </h1>
 
-          <p className="text-[28px] text-gray-700 max-w-6xl mx-auto mb-4">
+          <p className="risep mx-auto mb-4">
             Different industries. Different growth levers.
           </p>
-          <p className="text-[28px] text-gray-700 max-w-6xl mx-auto mb-4"></p>
+          <p className="risep mx-auto mb-8">
+            Every sector scales differently. We don't force-fit playbooks - we
+            adapt strategy to your industry.
+          </p>
 
-          {/* New Line */}
-          <h4 className="text-[1.4rem] text-gray-700 mx-auto mb-6">
-            We’ve built systems for:
+          <h4 className="text-3xl font-semibold text-gray-900 mx-auto mb-8">
+            We've built systems for
           </h4>
 
-          <button className="bg-[#0D0D0D] text-white px-6 py-3 rounded-full text-lg font-medium transition-colors duration-300 shadow-lg hover:text-[#2E8BFF] mt-26">
+          <button className="btn-primary cursor-pointer pointer-events-auto">
             Let's work together
           </button>
         </div>
@@ -218,8 +237,7 @@ const FallingPillsSection = () => {
             key={pill.id}
             className={`absolute px-5 py-3 rounded-full text-sm font-medium cursor-grab active:cursor-grabbing select-none transition-transform duration-200
               ${pill.color}
-              ${pill.isDragging ? "scale-110 z-10" : "hover:scale-[1.05]"}
-            `}
+              ${pill.isDragging ? "scale-110 z-10" : "hover:scale-[1.05]"}`}
             style={{
               left: `${pill.x}px`,
               top: `${pill.y}px`,

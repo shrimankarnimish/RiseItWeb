@@ -156,7 +156,7 @@ const LatestWork = () => {
 
   return (
     <div
-      className="relative py-16 px-4"
+      className="relative py-16 px-2"
       style={{
         minHeight: "70vh",
         backgroundColor: "#F0F2F4",
@@ -165,7 +165,7 @@ const LatestWork = () => {
       <div className="max-w-7xl mx-auto container-wrapper">
         {/* Section Header */}
         <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+          <h1 className="uh1 text-4xl font-bold mb-6">
             Latest Work
           </h1>
         </div>
