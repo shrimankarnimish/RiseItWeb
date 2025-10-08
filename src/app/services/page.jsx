@@ -108,3 +108,54 @@ const ServicesPage = () => {
 };
 
 export default ServicesPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "use client";
+// import React from "react";
+
+// const Services = () => {
+//   return (
+//     <section className="bg-[#F5F6F8] text-[#1A1A1A] min-h-screen flex flex-col items-center pt-[220px] pb-20">
+//       {/* Title */}
+//       <h1 className="riseservicesh1">Services</h1>
+
+//       {/* Subtitle Paragraph */}
+//       <p className="max-w-4xl text-center text-lg leading-relaxed uh2 px-6">
+//         You’ll benefit from top-tier agency services at small agency prices.
+//         With expertise in three core disciplines, we help you uncover your
+//         business needs, build traction, and drive accelerated growth.
+//       </p>
+//     </section>
+//   );
+// };
+
+// export default Services;

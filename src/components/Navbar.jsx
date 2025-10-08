@@ -9,19 +9,19 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setShow(false);
-      } else {
-        setShow(true);
-      }
-      setLastScrollY(window.scrollY);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY > lastScrollY) {
+  //       setShow(false);
+  //     } else {
+  //       setShow(true);
+  //     }
+  //     setLastScrollY(window.scrollY);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [lastScrollY]);
 
   return (
     <nav
@@ -91,9 +91,9 @@ export default function Navbar() {
           {/* Desktop Contact Button */}
           <Link href="/contactus">
             <div className="hidden md:block">
-              <div className="bg-white/90 backdrop-blur-md px-8 py-5 rounded-full shadow-lg flex items-center gap-2 cursor-pointer">
+              <div className="group bg-white/90 backdrop-blur-md px-8 py-5 rounded-full shadow-lg flex items-center gap-2 cursor-pointer">
                 <span className="w-3 h-3 bg-lime-400 rounded-full breathing-dot"></span>
-                <span className="text-[18px] text-gray-600 font-medium">
+                <span className="text-[18px] text-gray-600 font-medium group-hover:text-[#2E8BFF]">
                   Get in touch
                 </span>
               </div>
