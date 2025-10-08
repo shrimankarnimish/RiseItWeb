@@ -127,7 +127,7 @@ const Footer = () => {
             <div
               style={{
                 backgroundColor: colors[colorIndex],
-                color: "#1F2937",
+                color: "#ffffffff",
                 padding: "12px 32px",
                 borderRadius: "9999px",
                 fontSize: "18px",

@@ -5,26 +5,29 @@ import "./ServicesSection.css";
 const ServicesSection = () => {
   const cardRefs = useRef([]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("card-animate");
-          } else {
-            entry.target.classList.remove("card-animate");
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+ useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const el = entry.target;
 
-    cardRefs.current.forEach((card) => {
-      if (card) observer.observe(card);
-    });
+        if (entry.isIntersecting) {
+          // Only add once — never remove
+          el.classList.add("card-animate");
+          observer.unobserve(el); // Stop observing this card (prevents flicker)
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
 
-    return () => observer.disconnect();
-  }, []);
+  cardRefs.current.forEach((card) => {
+    if (card) observer.observe(card);
+  });
+
+  return () => observer.disconnect();
+}, []);
+
 
   const services = [
     {

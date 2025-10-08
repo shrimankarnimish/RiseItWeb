@@ -22,7 +22,7 @@ h1 {
 }
 
 h2 {
- 
+
   /* ~32px */
   font-weight: 700;
 }
@@ -286,8 +286,20 @@ body {
   line-height: 1.6;
   color: #0D0D0D;
 }
+
 .btn-primary {
   @apply bg-[#0D0D0D] text-white px-8 py-4 rounded-full text-base font-medium transition-colors duration-300 shadow-lg cursor-pointer hover:text-[#2E8BFF];
 }
 
-/* //footer */
+/* Services css */
+.riseservicesh1 {
+  font-size: 5rem;
+  font-weight: 600;
+  margin-top: 15px;
+  color: #0D0D0D;
+}
+.riseservicesp{
+      font-size: 1.55rem;
+    font-weight: 400;
+    line-height: 1.6;
+}
