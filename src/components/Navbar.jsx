@@ -83,7 +83,7 @@ export default function Navbar() {
             >
               Work
             </Link>
-            <Link href="#" className="hover:text-[#2E8BFF] transition-colors">
+            <Link href="/careers" className="hover:text-[#2E8BFF] transition-colors">
               Careers
             </Link>
           </div>
