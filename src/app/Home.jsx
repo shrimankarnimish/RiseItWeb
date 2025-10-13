@@ -7,7 +7,8 @@ import Slider from "@/components/Slider";
 import Whyus from "@/components/Whyus";
 import ServicesSection from "@/components/Services_Sticky";
 import Bit from "@/components/Bit";
-
+import Carousel from "@/components/Carousel";
+import SecondryService from "@/components/SecondryService";
 
 const Home = () => {
   return (
@@ -16,12 +17,12 @@ const Home = () => {
         <Animation />
       </section>
       <About />
-      <Bit/>
-      <ServicesSection />
+      <Bit />
+      <SecondryService />
       <Slider />
-      <Work />
-      <Whyus/>
+      <Carousel />
 
+      <Whyus />
     </div>
   );
 };

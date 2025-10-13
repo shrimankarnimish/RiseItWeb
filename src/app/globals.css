@@ -303,3 +303,80 @@ body {
     font-weight: 400;
     line-height: 1.6;
 }
+
+
+/* Marquee section start */
+.marquee-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow: hidden;
+  width: 100%;
+  padding: 30px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: fit-content;
+}
+
+.marquee-left {
+  animation: marquee-left 65s linear infinite;
+}
+
+.marquee-right {
+  animation: marquee-right 65s linear infinite;
+}
+
+.scroll-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 12px 24px;
+  margin-right: 24px;
+  min-width: 220px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e2e2;
+}
+
+.scroll-card span {
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: #0D0D0D;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.scroll-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Pause animation on hover */
+.marquee-container:hover .marquee-left,
+.marquee-container:hover .marquee-right {
+  animation-play-state: paused;
+}
