@@ -25,7 +25,7 @@ const services = [
 
 const WorkSection = () => {
   return (
-    <section className="bg-[#F0F2F4] pt-36 pb-20 overflow-hidden">
+    <section className="bg-[#F0F2F4] pt-20 pb-20 overflow-hidden">
       {/* Heading */}
       <div className="container-wrapper relative">
         <div className="grid lg:grid-cols-2 gap-9 items-start">
