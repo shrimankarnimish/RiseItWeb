@@ -48,8 +48,12 @@ const Fade = ({ children, direction = "up", duration = 0.8, delay = 0 }) => {
   );
 };
 
-// Export reusable components
+// Reusable fade components
 export const FadeLeft = (props) => <Fade {...props} direction="left" />;
 export const FadeRight = (props) => <Fade {...props} direction="right" />;
 export const FadeUp = (props) => <Fade {...props} direction="up" />;
 export const FadeDown = (props) => <Fade {...props} direction="down" />;
+
+// New explicit fade in up/down components
+export const FadeInUp = (props) => <Fade {...props} direction="up" />;
+export const FadeInDown = (props) => <Fade {...props} direction="down" />;
