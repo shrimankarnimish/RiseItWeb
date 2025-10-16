@@ -1,5 +1,8 @@
 import React from "react";
 import Animation from "@/components/Animation";
+import AnimatedCards from "@/components/AnimatedVideo";
+
+
 import Work from "@/components/Work";
 import Sticky from "@/components/Services_Sticky";
 import About from "@/components/About";
@@ -13,9 +16,11 @@ import SecondryService from "@/components/SecondryService";
 const Home = () => {
   return (
     <div className="relative w-full">
-      <section className="h-screen">
+      {/* <section className="h-screen">
         <Animation />
-      </section>
+      </section> */}
+
+      <AnimatedCards />
       <About />
       <Bit />
       <SecondryService />

@@ -28,9 +28,7 @@ const categories = [
       {
         title: "Concert",
         desc: "Stage, crowd & schedule coordination.Stage, crowd & schedule coordination.",
-        images: [
-          "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=500&q=60",
-        ],
+        images: ["../../Assets/Images/events.webp"],
         icon: <FaMusic />,
       },
       {
@@ -74,7 +72,7 @@ const categories = [
       },
       {
         title: "Security.",
-        desc: "Access control & surveillance.Backstage & equipment flows.Backstage & equipment flows.Backstage & equipment flows.Backstage & equipment flows",
+        desc: "Access control & surveillance.Backstage & equipment flows.",
         images: [
           "https://media.istockphoto.com/id/2193626844/photo/businessman-holding-magnifying-glass-an-investor-studying-real-estate-market-trends-with-a.webp?a=1&b=1&s=612x612&w=0&k=20&c=mI1Jfqi0gX9WSr7v1aPCEFtlKOMDK0gD4LJp37ZR2Cc=",
         ],
@@ -82,7 +80,7 @@ const categories = [
       },
       {
         title: "Support",
-        desc: "On-site guest assistance.Backstage & equipment flows.Backstage & equipment flows.Backstage & equipment flows.Backstage & equipment flows",
+        desc: "On-site guest assistance.Backstage & equipment flows.",
         images: [
           "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=500&q=60",
         ],
@@ -90,7 +88,7 @@ const categories = [
       },
       {
         title: "Vendors",
-        desc: "Vendor coordination & services.Custom forms & guest workflows.ackstage & equipment flows.Backstage & equipment flows",
+        desc: "Vendor coordination & services.Custom forms & guest",
         images: [
           "https://images.unsplash.com/photo-1487611459768-bd414656ea10?auto=format&fit=crop&w=500&q=60",
         ],
@@ -105,7 +103,7 @@ const categories = [
     cards: [
       {
         title: "Lighting",
-        desc: "Mood & experience lighting.Custom forms & guest workflowsCustom forms & guest workflows",
+        desc: "Mood & experience lighting.Custom forms & guest",
         images: [
           "https://www.cio.com/wp-content/uploads/2023/05/data_analytics_risk_assessment_tracking_trends_graphs_by_ipopba_gettyimages-1150397416_2400x1600-100828857-orig-7.jpg?auto=format&fit=crop&w=500&q=60",
         ],
@@ -113,7 +111,7 @@ const categories = [
       },
       {
         title: "Sound",
-        desc: "Pro audio & mixing.Custom forms & guest workflowsCustom forms & guest workflows",
+        desc: "Pro audio & mixing.Custom forms & guest workflows",
         images: [
           "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=500&q=60",
         ],
@@ -144,7 +142,7 @@ const categories = [
     cards: [
       {
         title: "Analytics",
-        desc: "Live KPI & dashboards.Custom forms & guest workflows.Custom forms & guest workflows",
+        desc: "Live KPI & dashboards.Custom forms & guest workflows.",
         images: [
           "https://images.unsplash.com/photo-1491951931722-5a446214b4e2?auto=format&fit=crop&q=60&w=500",
         ],
@@ -259,29 +257,39 @@ export default function ServicesSection() {
                       key={cardId}
                       data-card-id={cardId}
                       ref={(el) => cardRefs.current.push(el)}
-                      className="relative group bg-white border border-gray-200 rounded-xl p-5 h-56 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                      className="relative group bg-white border border-gray-200 rounded-xl p-10 h-56 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                      style={{ height: "320px", width: "100%" }}
                     >
                       {/* Icon & Title Row */}
-                      <div className="flex items-center gap-3 z-10">
-                        <div className="text-xl text-[#2E8BFF]">
+                      <div className="flex items-center gap-3 z-10 group-hover:opacity-0">
+                        <div
+                          className="text-xl text-[#2E8BFF]"
+                          style={{
+                            padding: ".75rem",
+                            backgroundColor: "#e5e7eb",
+                            boxSizing: "border-box",
+                            borderRadius: "10px",
+                          }}
+                        >
                           {card.icon}
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900">
-                          {card.title}
-                        </h3>
                       </div>
 
                       {/* Description */}
-                      <p className="text-gray-600 text-sm leading-relaxed z-10 transition-opacity duration-300 group-hover:opacity-0">
+                      <p className="text-gray-600 text-sm leading-relaxed z-10 transition-opacity duration-100 group-hover:opacity-0">
+                        <h3 className="text-lg font-semibold text-gray-900">
+                          {card.title}
+                        </h3>
                         {card.desc}
                       </p>
 
                       {/* Hover Image Overlay */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-100 scale-105">
                         <img
                           src={card.images?.[0]}
                           alt={card.title}
-                          className="w-full h-full object-cover rounded-xl scale-105 group-hover:scale-100 transition-transform duration-300"
+                          className="w-full h-full object-cover rounded-xl scale-105 group-hover:scale-105 transition-transform duration-100"
+                          style={{ padding: "100px" }}
                         />
                         {/* Dark Gradient for Contrast */}
                         <div className="absolute inset-0 bg-black/40"></div>
