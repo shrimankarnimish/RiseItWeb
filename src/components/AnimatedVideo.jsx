@@ -322,6 +322,7 @@ export default function AnimatedCards() {
         background: "#fff",
         position: "relative",
       }}
+     
     >
       <div 
         style={{

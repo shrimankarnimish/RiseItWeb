@@ -198,113 +198,109 @@ export default function ServicesSection() {
 
   return (
     <div className="w-full bg-[#FFFFFF] text-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24 flex flex-col lg:flex-row gap-12 container-wrapper">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col lg:flex-row gap-12 container-wrapper">
         {/* LEFT SIDE */}
-        <aside className="w-full lg:w-1/2 sticky lg:top-24 h-auto lg:h-[calc(100vh-6rem)] flex flex-col justify-start mb-12 lg:mb-0">
-          <div className="mb-6">
-            <div className="risep text-black">OUR SERVICES</div>
-            <h1 className="uh1 mt-6 whitespace-pre-line text-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-snug">
-              {categories[0].heading}
-            </h1>
-          </div>
-          <nav className="mt-10 relative pl-8">
-            {/* Left border background */}
-            <div className="absolute left-0 top-0 w-[5px] h-full bg-gray-700"></div>
+          <aside className="w-full lg:w-1/2 sticky lg:top-24 h-auto lg:h-[calc(100vh-6rem)] flex flex-col justify-start mb-12 lg:mb-0">
+      <div className="mb-6">
+        <div className="risep text-black">OUR SERVICES</div>
+        <h1 className="uh1 mt-6 whitespace-pre-line text-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-snug">
+          {categories[0].heading}
+        </h1>
+      </div>
+      <nav className="mt-10 relative pl-4 sm:pl-8">
+        <div className="absolute left-0 top-0 w-[5px] h-full bg-gray-700"></div>
+        <div
+          className="absolute left-0 w-[5px] bg-[#2E8BFF] transition-all duration-500 ease-out"
+          style={{
+            top: `calc(${active} * (100% / ${categories.length}))`,
+            height: `calc(100% / ${categories.length})`,
+          }}
+        ></div>
 
-            {/* Blue active indicator */}
-            <div
-              className="absolute left-0 w-[5px] bg-[#2E8BFF] transition-all duration-500 ease-out"
-              style={{
-                top: `calc(${active} * (100% / ${categories.length}))`,
-                height: `calc(100% / ${categories.length})`,
-              }}
-            ></div>
-
-            <ul className="flex flex-col gap-4">
-              {categories.map((cat, i) => (
-                <li key={cat.name} className="relative">
-                  <button
-                    onClick={() =>
-                      sectionRefs.current[i]?.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                      })
-                    }
-                    className={`uh2 text-left inline-block transition-all duration-300 ${active === i
-                      ? "text-[#2E8BFF] font-bold"
-                      : "text-gray-600 font-medium"
-                      }`}
-
-                  >
-                    {cat.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </aside>
+        <ul className="flex flex-col gap-4">
+          {categories.map((cat, i) => (
+            <li key={cat.name} className="relative">
+              <button
+                onClick={() =>
+                  sectionRefs.current[i]?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  })
+                }
+                className={`uh2 text-left inline-block transition-all duration-300 ${active === i
+                  ? "text-[#2E8BFF] font-bold"
+                  : "text-gray-600 font-medium"
+                  }`}
+              >
+                {cat.name}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
 
         {/* RIGHT SIDE */}
-        <main className="flex-1 space-y-10 pb-24">
-          {categories.map((cat, i) => (
-            <section
-              key={cat.name}
-              ref={(el) => (sectionRefs.current[i] = el)}
-              data-index={i}
-              className="scroll-mt-20"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                {cat.cards.map((card, idx) => {
-                  const cardId = `${i}-${idx}`;
-                  return (
-                    <article
-                      key={cardId}
-                      ref={(el) => cardRefs.current.push(el)}
-                      className="relative group bg-white border border-gray-200 rounded-xl p-10 h-80 flex flex-col justify-between shadow-sm overflow-hidden
-             transform transition-transform duration-500 ease-out hover:-translate-y-2 hover:shadow-xl"
+       <main className="flex-1 space-y-10 pb-24">
+      {categories.map((cat, i) => (
+        <section
+          key={cat.name}
+          ref={(el) => (sectionRefs.current[i] = el)}
+          data-index={i}
+          className="scroll-mt-20"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+            {cat.cards.map((card, idx) => {
+              const cardId = `${i}-${idx}`;
+              return (
+                <article
+                  key={cardId}
+                  ref={(el) => cardRefs.current.push(el)}
+                  className="relative group bg-white border border-gray-200 rounded-xl p-10 h-80 flex flex-col justify-between shadow-sm overflow-hidden
+           transform transition-transform duration-500 ease-out hover:-translate-y-2 hover:shadow-xl"
+                >
+                  {/* ICON */}
+                  <div className="flex items-center gap-3 z-10 group-hover:opacity-0 transition-opacity duration-500 ease-out mb-4">
+                    <div
+                      className="text-xl text-[#2E8BFF]"
+                      style={{
+                        padding: ".75rem",
+                        backgroundColor: "#e5e7eb",
+                        borderRadius: "10px",
+                      }}
                     >
-                      {/* ICON */}
-                      <div className="flex items-center gap-3 z-10 group-hover:opacity-0 transition-opacity duration-500 ease-out mb-4">
-                        <div
-                          className="text-xl text-[#2E8BFF]"
-                          style={{
-                            padding: ".75rem",
-                            backgroundColor: "#e5e7eb",
-                            borderRadius: "10px",
-                          }}
-                        >
-                          {card.icon}
-                        </div>
-                      </div>
+                      {card.icon}
+                    </div>
+                  </div>
 
-                      {/* CONTENT */}
-                      <div className="z-10 flex flex-col flex-1 justify-between transition-opacity duration-500 ease-out group-hover:opacity-0">
-                        <div>
-                          <h4 className="text-lg font-semibold text-gray-900 leading-[1.2]">
-                            {card.title}
-                          </h4>
-                          <p className="text-gray-600 text-sm leading-relaxed mt-3">
-                            {card.desc}
-                          </p>
-                        </div>
-                      </div>
+                  {/* CONTENT */}
+                  <div className="z-10 flex flex-col flex-1 justify-between transition-opacity duration-500 ease-out group-hover:opacity-0">
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 leading-[1.2]">
+                        {card.title}
+                      </h4>
+                      <p className="text-gray-600 text-sm leading-relaxed mt-3">
+                        {card.desc}
+                      </p>
+                    </div>
+                  </div>
 
-                      {/* HOVER IMAGE OVERLAY */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
-                        <img
-                          src={card.images?.[0]}
-                          alt={card.title}
-                          className="w-full h-full object-coverr rounded-xl scale-100 group-hover:scale-105 transition-transform duration-500 ease-out"
-                        />
-                        <div className="absolute inset-0 bg-black/40"></div>
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </section>
-          ))}
-        </main>
+                  {/* HOVER IMAGE OVERLAY */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
+                    <img
+                      src={card.images?.[0]}
+                      alt={card.title}
+                      className="w-full h-full object-cover rounded-xl scale-100 group-hover:scale-105 transition-transform duration-500 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-black/40"></div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      ))}
+    </main>
       </div>
     </div>
   );
