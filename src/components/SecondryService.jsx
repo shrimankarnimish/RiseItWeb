@@ -207,10 +207,22 @@ export default function ServicesSection() {
               {categories[0].heading}
             </h1>
           </div>
-          <nav className="mt-10">
-            <ul className="flex flex-col gap-4 sm:gap-6">
+          <nav className="mt-10 relative pl-8">
+            {/* Left border background */}
+            <div className="absolute left-0 top-0 w-[5px] h-full bg-gray-700"></div>
+
+            {/* Blue active indicator */}
+            <div
+              className="absolute left-0 w-[5px] bg-[#2E8BFF] transition-all duration-500 ease-out"
+              style={{
+                top: `calc(${active} * (100% / ${categories.length}))`,
+                height: `calc(100% / ${categories.length})`,
+              }}
+            ></div>
+
+            <ul className="flex flex-col gap-4">
               {categories.map((cat, i) => (
-                <li key={cat.name}>
+                <li key={cat.name} className="relative">
                   <button
                     onClick={() =>
                       sectionRefs.current[i]?.scrollIntoView({
@@ -218,17 +230,13 @@ export default function ServicesSection() {
                         block: "start",
                       })
                     }
-                    className={`uh2 text-lg md:text-xl font-medium text-left relative pb-1 inline-block transition-colors duration-300 ${active === i ? "text-[#2E8BFF]" : "text-gray-700"
+                    className={`uh2 text-left inline-block transition-all duration-300 ${active === i
+                      ? "text-[#2E8BFF] font-bold"
+                      : "text-gray-600 font-medium"
                       }`}
+
                   >
                     {cat.name}
-                    <span
-                      className={`absolute left-0 -bottom-1 h-[2px] bg-[#2E8BFF] rounded-full transform origin-left transition-all duration-500 ease-out ${active === i
-                        ? "scale-x-100 opacity-100"
-                        : "scale-x-0 opacity-0"
-                        }`}
-                      style={{ width: "100%" }}
-                    ></span>
                   </button>
                 </li>
               ))}
@@ -252,10 +260,11 @@ export default function ServicesSection() {
                     <article
                       key={cardId}
                       ref={(el) => cardRefs.current.push(el)}
-                      className="relative group bg-white border border-gray-200 rounded-xl p-10 h-80 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                      className="relative group bg-white border border-gray-200 rounded-xl p-10 h-80 flex flex-col justify-between shadow-sm overflow-hidden
+             transform transition-transform duration-500 ease-out hover:-translate-y-2 hover:shadow-xl"
                     >
                       {/* ICON */}
-                      <div className="flex items-center gap-3 z-10 group-hover:opacity-0 mb-4">
+                      <div className="flex items-center gap-3 z-10 group-hover:opacity-0 transition-opacity duration-500 ease-out mb-4">
                         <div
                           className="text-xl text-[#2E8BFF]"
                           style={{
@@ -268,8 +277,8 @@ export default function ServicesSection() {
                         </div>
                       </div>
 
-                      {/* CONTENT WRAPPER */}
-                      <div className="z-10 flex flex-col flex-1 justify-between transition-opacity duration-100 group-hover:opacity-0">
+                      {/* CONTENT */}
+                      <div className="z-10 flex flex-col flex-1 justify-between transition-opacity duration-500 ease-out group-hover:opacity-0">
                         <div>
                           <h4 className="text-lg font-semibold text-gray-900 leading-[1.2]">
                             {card.title}
@@ -281,18 +290,15 @@ export default function ServicesSection() {
                       </div>
 
                       {/* HOVER IMAGE OVERLAY */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-100">
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
                         <img
                           src={card.images?.[0]}
                           alt={card.title}
-                          className="w-full h-full object-cover rounded-xl scale-105 group-hover:scale-105 transition-transform duration-100"
-                          style={{ padding: "100px" }}
+                          className="w-full h-full object-coverr rounded-xl scale-100 group-hover:scale-105 transition-transform duration-500 ease-out"
                         />
                         <div className="absolute inset-0 bg-black/40"></div>
                       </div>
                     </article>
-
-
                   );
                 })}
               </div>
