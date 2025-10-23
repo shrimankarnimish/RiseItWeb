@@ -64,7 +64,7 @@ const services = [
 
 const ServicesPage = () => {
   return (
-    <section className="bg-gradient-to-b from-gray-100 to-gray-200 pt-[120px] pb-20 px-6 md:px-16">
+    <section className="bg-white pt-[120px] pb-20 px-6 md:px-16">
       {/* Header */}
       <div className="max-w-4xl mx-auto text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800">

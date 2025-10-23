@@ -391,3 +391,11 @@ body {
 
 
 /* Hero section css media queries */
+
+.duration-500 {
+    transition-duration: .5s;
+}
+
+.object-coverr {
+    padding: 90px;
+}
