@@ -15,10 +15,11 @@ const Contact = () => {
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center"></div>
+        {/* Adding the overlay only on top of the image, removing unnecessary stretching */}
+        {/* <div className="absolute inset-0 bg-black/40"></div> */}
       </section>
 
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 mt-12">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 mt-12 pb-10">
         {/* Left Section */}
         <div>
           <h2 className="titleabout mb-6">Contact</h2>
@@ -100,10 +101,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-
-      <br />
-      <br />
-      <br />
     </div>
   );
 };

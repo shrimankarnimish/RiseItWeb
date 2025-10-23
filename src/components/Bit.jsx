@@ -20,7 +20,7 @@ const InfoSection = () => {
   ];
 
   return (
-    <section className="bg-[#F0F2F4] pt-20 pb-58">
+    <section className="bg-[#FFFFF] pt-20 pb-58">
     <FadeInUp>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 relative container-wrapper">
         {items.map((item, index) => (

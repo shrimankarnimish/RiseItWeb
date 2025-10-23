@@ -15,7 +15,7 @@ const Contact = () => {
           priority
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center"></div>
+        {/* <div className="absolute inset-0 bg-black/40 flex items-center justify-center"></div> */}
       </section>
 
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 mt-12">

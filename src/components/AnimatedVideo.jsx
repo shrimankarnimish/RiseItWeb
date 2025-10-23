@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,9 +17,16 @@ const cardsData = [
 export default function AnimatedCards() {
   const cardsRef = useRef([]);
   const containerRef = useRef();
+  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
 
   useEffect(() => {
-    // Init Lenis (optional but recommended)
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    // Init Lenis
     const lenis = new Lenis();
     function raf(time) {
       lenis.raf(time);
@@ -27,16 +34,19 @@ export default function AnimatedCards() {
     }
     requestAnimationFrame(raf);
 
+    // Card spacing based on screen size
+    const spacing = windowWidth < 768 ? 150 : 300;
+
     // Animate cards into grid layout on scroll
     cardsRef.current.forEach((card, index) => {
-      const x = (index - 1.5) * 300; // spacing for 4 cards
+      const x = (index - (cardsData.length - 1) / 2) * spacing; // center align
 
       gsap.to(card, {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=500",
-          scrub: true,
+          end: "+=150",
+          scrub: 0.5,
         },
         x: x,
         y: 0,
@@ -49,20 +59,19 @@ export default function AnimatedCards() {
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
-  }, []);
+  }, [windowWidth]);
 
   return (
     <div
       ref={containerRef}
       style={{
         height: "100vh",
-        // background: "linear-gradient(135deg, #2de2c9, #0ca678)",
         background: "#fff",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      <div
+      <div 
         style={{
           height: "100vh",
           width: "100%",
@@ -72,34 +81,39 @@ export default function AnimatedCards() {
           justifyContent: "center",
           alignItems: "center",
           perspective: "1000px",
-          marginTop: "0vh",
-          paddingTop:"20vh"
+          paddingTop: "20vh",
         }}
       >
         <h1
           style={{
             position: "absolute",
-            // top: "0%",
             bottom: "0%",
             left: "50%",
             transform: "translateX(-50%)",
-            color: "white",
-            fontSize: "2rem",
+            color: "grey",
+            fontSize: windowWidth < 768 ? "1.5rem" : "2rem",
             fontWeight: "bold",
             zIndex: 10,
             marginBottom: "10vh",
           }}
         >
-          Advanced Event Solution
+          {/* Advanced Event Solution */}
         </h1>
+        
         {cardsData.map((card, index) => {
-          // Set initial "X"/"+" rotated positions
-          const transforms = [
-            { x: -100, y: -100, rotate: -45 },
-            { x: 100, y: -100, rotate: 45 },
-            { x: -100, y: 100, rotate: 45 },
-            { x: 100, y: 100, rotate: -45 },
-          ];
+          const transforms = windowWidth < 768
+            ? [
+                { x: -80, y: -80, rotate: -30 },
+                { x: 80, y: -80, rotate: 30 },
+                { x: -80, y: 80, rotate: 30 },
+                { x: 80, y: 80, rotate: -30 },
+              ]
+            : [
+                { x: -100, y: -100, rotate: -45 },
+                { x: 100, y: -100, rotate: 45 },
+                { x: -100, y: 100, rotate: 45 },
+                { x: 100, y: 100, rotate: -45 },
+              ];
 
           return (
             <div
@@ -107,8 +121,8 @@ export default function AnimatedCards() {
               ref={(el) => (cardsRef.current[index] = el)}
               style={{
                 position: "absolute",
-                width: "180px",
-                height: "240px",
+                width: windowWidth < 768 ? "140px" : "180px",
+                height: windowWidth < 768 ? "200px" : "240px",
                 background: "white",
                 borderRadius: "16px",
                 boxShadow: "0 12px 30px rgba(0,0,0,0.2)",
@@ -123,13 +137,13 @@ export default function AnimatedCards() {
                 transition: "transform 0.3s",
               }}
             >
-              <div style={{ fontSize: "2rem", marginBottom: "10px" }}>
+              <div style={{ fontSize: windowWidth < 768 ? "1.5rem" : "2rem", marginBottom: "10px" }}>
                 {card.icon}
               </div>
-              <h3 style={{ fontWeight: "bold", marginBottom: "10px" }}>
+              <h3 style={{ fontWeight: "bold", marginBottom: "10px", fontSize: windowWidth < 768 ? "1rem" : "1.2rem" }}>
                 {card.title}
               </h3>
-              <p style={{ fontSize: "0.9rem", color: "#555" }}>{card.desc}</p>
+              <p style={{ fontSize: windowWidth < 768 ? "0.8rem" : "0.9rem", color: "#555" }}>{card.desc}</p>
             </div>
           );
         })}
