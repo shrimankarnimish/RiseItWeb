@@ -7,7 +7,7 @@ import { FadeLeft, FadeRight } from "@/components/Animations";
 
 const AboutSection = () => {
   return (
-    <section style={{ backgroundColor: "#F0F2F4" }}>
+    <section style={{ backgroundColor: "#ffffffff" }}>
       <style jsx>{`
         @keyframes floatUp {
           0%,

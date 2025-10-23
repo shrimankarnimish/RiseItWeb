@@ -90,7 +90,8 @@ Our approach blends data, strategy, and creativity - so every move drives ROI, s
   // fallback container height while SSR / before measurement
   const containerStyle = {
     height: containerHeight ? `${containerHeight}px` : "110vh",
-    backgroundColor: "#F0F2F4",
+    backgroundColor: "#ffffffff", 
+    // changed from F0F2F4 to FFFFF
   };
 
   return (

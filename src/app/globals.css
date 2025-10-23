@@ -93,6 +93,10 @@ body {
 
 
 
+
+
+
+
 @keyframes pulseDot {
 
   0%,
@@ -384,3 +388,6 @@ body {
 .inset-0 {
     inset: calc(46px * -2);
 }
+
+
+/* Hero section css media queries */
